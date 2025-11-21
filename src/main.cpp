@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <SPI.h>
-
+#include <Servo.h>
 
 //MPU6050 and Arduino Tutorial
 //https://www.youtube.com/watch?v=wTfSfhjhAU0
@@ -162,14 +162,14 @@ void loop()
   Wire.requestFrom(MPU_ADDR, 6, true); //Read next 6 registers
 
   //Top register is High, bottom register is Low hence the bit shift
-  //accel_x = Wire.read()<<8 | Wire.read();
-  //accel_y = Wire.read()<<8 | Wire.read();
-  //accel_z = Wire.read()<<8 | Wire.read();
+  accel_x = Wire.read()<<8 | Wire.read();
+  accel_y = Wire.read()<<8 | Wire.read();
+  accel_z = Wire.read()<<8 | Wire.read();
 
   //Test Values:
-  accel_x=4660;
-  accel_y=22136;
-  accel_z=30612;
+  //accel_x=4660;
+  //accel_y=22136;
+  //accel_z=30612;
 
   Wire.beginTransmission(MPU_ADDR);
   Wire.write(0x43); //Select starting Gyroscope Register
@@ -177,14 +177,14 @@ void loop()
   Wire.requestFrom(MPU_ADDR, 6, true); //Read next 6 registers
 
   //Top register is High, bottom register is Low hence the bit shift
-  //gyro_x = Wire.read()<<8 | Wire.read();
-  //gyro_y = Wire.read()<<8 | Wire.read();
-  //gyro_z = Wire.read()<<8 | Wire.read();
+  gyro_x = Wire.read()<<8 | Wire.read();
+  gyro_y = Wire.read()<<8 | Wire.read();
+  gyro_z = Wire.read()<<8 | Wire.read();
 
   //Test values:
-  gyro_x=10072;
-  gyro_y=9029;
-  gyro_z=-26505;
+  //gyro_x=10072;
+  //gyro_y=9029;
+  //gyro_z=-26505;
 
   Wire.beginTransmission(MPU_ADDR);
   Wire.write(0x41); //Select starting Temperature Register
